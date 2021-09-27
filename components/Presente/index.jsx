@@ -1,6 +1,6 @@
 import styles from '../../styles/Presente.module.css';
 
-export default function Presente() {
+const Presente = () => {
   return (
     <div className={styles.presente}>
       <div className={styles.tampa} />
@@ -9,4 +9,6 @@ export default function Presente() {
       <div className={styles.corpo} />
     </div>
   );
-}
+};
+
+export default Presente;

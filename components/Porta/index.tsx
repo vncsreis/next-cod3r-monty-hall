@@ -2,15 +2,22 @@ import styles from '../../styles/Porta.module.css';
 import PortaModel from '../../models/porta';
 
 interface PortaProps {
-  porta: PortaModel;
+  value: PortaModel;
+  onChange: (novaPorta: PortaModel) => void;
 }
 
-export default function Porta(props: PortaProps) {
-  const { porta } = props;
+const Porta = (props: PortaProps) => {
+  const porta = props.value;
   const selecionada = porta.selecionada ? styles.selecionada : '';
 
+  // alternarSelecao chama o onChange que é passado na chamada do componente
+  // no index.tsx, fornecendo uma nova porta
+  // (gerada pelo alternarSelecao) como parâmetro
+
+  const alternarSelecao = e => props.onChange(porta.alternarSelecao());
+
   return (
-    <div className={styles.area}>
+    <div className={styles.area} onClick={alternarSelecao}>
       <div className={`${styles.estrutura} ${selecionada}`}>
         <div className={styles.porta}>
           <div className={styles.numero}>{porta.numero}</div>
@@ -21,3 +28,5 @@ export default function Porta(props: PortaProps) {
     </div>
   );
 }
+
+export default Porta;
