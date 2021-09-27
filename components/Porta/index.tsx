@@ -8,29 +8,28 @@ interface PortaProps {
 
 const Porta = (props: PortaProps) => {
   const porta = props.value;
-  const selecionada = porta.selecionada && !porta.aberta? styles.selecionada : '';
+  const selecionada =
+    porta.selecionada && !porta.aberta ? styles.selecionada : '';
 
   // alternarSelecao chama o onChange que é passado na chamada do componente
   // no index.tsx, fornecendo uma nova porta
   // (gerada pelo alternarSelecao) como parâmetro
 
-  const alternarSelecao = e => props.onChange(porta.alternarSelecao());
+  const alternarSelecao = () => props.onChange(porta.alternarSelecao());
 
   // onChange serve para renderizar nova porta com
-  // a mudança passada na função 
-  const abrir = e => {
+  // a mudança passada na função
+  const abrir = (e) => {
     e.stopPropagation();
-    props.onChange(porta.abrir())
+    props.onChange(porta.abrir());
   };
 
-  const renderizarPorta = () => {
-    return (
-        <div className={styles.porta}>
-          <div className={styles.numero}>{porta.numero}</div>
-          <div className={styles.macaneta} onClick={abrir}/>
-        </div>
-    )
-  }
+  const renderizarPorta = () => (
+    <div className={styles.porta}>
+      <div className={styles.numero}>{porta.numero}</div>
+      <div className={styles.macaneta} onClick={abrir} />
+    </div>
+  );
 
   return (
     <div className={styles.area} onClick={alternarSelecao}>
@@ -40,6 +39,6 @@ const Porta = (props: PortaProps) => {
       <div className={styles.chao} />
     </div>
   );
-}
+};
 
 export default Porta;
