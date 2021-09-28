@@ -9,7 +9,18 @@ import { atualizarPortas, criarPortas } from '../../../functions/portas';
 const Jogo = () => {
   const router = useRouter();
 
+  const [valido, setValido] = useState(false);
   const [portas, setPortas] = useState([]);
+
+  useEffect(() => {
+    const portasQtd = +router.query.portas;
+    const temPresente = +router.query.temPresente;
+
+    const qtdePortasValida = portasQtd >= 3 && portasQtd <= 100;
+    const temPresenteValido = temPresente >= 1 && temPresente <= portasQtd;
+
+    setValido(qtdePortasValida && temPresenteValido);
+  });
 
   useEffect(() => {
     const portasQtd = +router.query.portas;
@@ -30,7 +41,9 @@ const Jogo = () => {
 
   return (
     <div id={styles.jogo}>
-      <div className={styles.portas}>{renderizarPortas()}</div>
+      <div className={styles.portas}>
+        {valido ? renderizarPortas() : <h2>Valores Inválidos</h2>}
+      </div>
       <div className={styles.botoes}>
         <Link href="/">
           <button type="button">Reiniciar jogo</button>
