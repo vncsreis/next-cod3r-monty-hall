@@ -20,7 +20,7 @@ const Jogo = () => {
     const temPresenteValido = temPresente >= 1 && temPresente <= portasQtd;
 
     setValido(qtdePortasValida && temPresenteValido);
-  });
+  }, [portas, router.query.portas, router.query.temPresente]);
 
   useEffect(() => {
     const portasQtd = +router.query.portas;
@@ -45,7 +45,7 @@ const Jogo = () => {
         {valido ? renderizarPortas() : <h2>Valores Inválidos</h2>}
       </div>
       <div className={styles.botoes}>
-        <Link href="/">
+        <Link passHref href="/">
           <button type="button">Reiniciar jogo</button>
         </Link>
       </div>

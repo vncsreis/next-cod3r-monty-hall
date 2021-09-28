@@ -32,7 +32,7 @@ const Formulario = () => {
           />
         </Cartao>
         <Cartao bgColor="#28a085">
-          <Link href={`/jogo/${qtdePortas}/${comPresente}`}>
+          <Link passHref href={`/jogo/${qtdePortas}/${comPresente}`}>
             <p className={styles.link}>Iniciar</p>
           </Link>
         </Cartao>
